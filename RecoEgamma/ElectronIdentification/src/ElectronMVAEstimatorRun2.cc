@@ -25,6 +25,28 @@ ElectronMVAEstimatorRun2::ElectronMVAEstimatorRun2(const edm::ParameterSet& conf
 
 }
 
+ElectronMVAEstimatorRun2::ElectronMVAEstimatorRun2(const std::string &mvaTag, const std::string &mvaName, const std::vector <std::string> &weightFileNames, const int &nCategories, const bool debug, const std::string variableDefinition, const std::vector <std::string> categoryCutStrings):
+  name_        (mvaName),
+  tag_         (mvaTag),
+  nCategories_ (nCategories),
+  methodName_  ("BDTG method"),
+  debug_       (debug),
+  mvaVarMngr_(variableDefinition)
+{
+  if( (int)(categoryCutStrings.size()) != getNCategories() )
+    throw cms::Exception("MVA config failure: ")
+      << "wrong number of category cuts in " << getName() << getTag() << std::endl;
+
+  for (int i = 0; i < getNCategories(); ++i) {
+      StringCutObjectSelector<reco::GsfElectron> select(categoryCutStrings[i]);
+      categoryFunctions_.push_back(select);
+  }
+
+  // Initialize GBRForests from weight files
+  init(weightFileNames);
+
+}
+
 void ElectronMVAEstimatorRun2::init(const std::vector<std::string> &weightFileNames) {
 
   if(isDebug()) {
