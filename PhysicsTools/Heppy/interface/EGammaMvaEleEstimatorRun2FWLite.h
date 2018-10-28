@@ -19,7 +19,7 @@ namespace heppy {
             EGammaMvaEleEstimatorRun2FWLite(const EGammaMvaEleEstimatorRun2FWLite & other) = delete;
             EGammaMvaEleEstimatorRun2FWLite & operator=(const EGammaMvaEleEstimatorRun2FWLite & other) = delete;
 
-            float operator()(const pat::Electron& electron) const ;
+            float operator()(const pat::Electron& electron, const edm::EventBase& iEvent) const ;
 
         private:
             const ElectronMVAEstimatorRun2* mvaReader_;

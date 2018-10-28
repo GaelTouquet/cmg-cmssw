@@ -11,7 +11,7 @@ heppy::EGammaMvaEleEstimatorRun2FWLite::EGammaMvaEleEstimatorRun2FWLite(const st
 			   const std::string variableDefinition, 
 			   const std::vector <std::string> categoryCutStrings)
 {
-    
+  ElectronMVAEstimatorRun2* mvaReader_ = new ElectronMVAEstimatorRun2(mvaTag, mvaName, weightFileNames, nCategories, debug, variableDefinition, categoryCutStrings);
 }
 
 heppy::EGammaMvaEleEstimatorRun2FWLite::~EGammaMvaEleEstimatorRun2FWLite()
@@ -21,6 +21,6 @@ heppy::EGammaMvaEleEstimatorRun2FWLite::~EGammaMvaEleEstimatorRun2FWLite()
 
 float heppy::EGammaMvaEleEstimatorRun2FWLite::operator()(const pat::Electron& electron, const edm::EventBase& iEvent) const 
 {
-  int icategory = mvaReader_->findCategory(electron)
-    return mvaReader_->mvaValue(electron, iEvent, icategory);
+  int icategory = mvaReader_->findCategory(electron);
+  return mvaReader_->mvaValue(electron, iEvent, icategory);
 }
