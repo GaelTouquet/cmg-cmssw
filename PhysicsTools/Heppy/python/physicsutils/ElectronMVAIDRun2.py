@@ -46,6 +46,8 @@ categoryCuts = [
      "pt >= 10. && abs(superCluster.eta) >= 1.479", # EE_10
      ]
 
+mvaEleID_Fall17_iso_V2_wp90 = 
+
 ElectronMVAID2017Isov2 = ElectronMVAIDRun2(
     'Fall17IsoV2',
     'mvaElectronID_Fall17_iso_v2',

@@ -1,7 +1,5 @@
 #include "PhysicsTools/Heppy/interface/EGammaMvaEleEstimatorRun2FWLite.h"
 #include "RecoEgamma/ElectronIdentification/interface/ElectronMVAEstimatorRun2.h"
-#include <TFile.h>
-#include <cassert>
 
 heppy::EGammaMvaEleEstimatorRun2FWLite::EGammaMvaEleEstimatorRun2FWLite(const std::string &mvaTag, 
 			   const std::string &mvaName, 
